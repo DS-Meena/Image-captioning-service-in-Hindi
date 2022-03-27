@@ -1,0 +1,1 @@
+web gunicorn ICS_hindi.wsgi:application --log-file -
