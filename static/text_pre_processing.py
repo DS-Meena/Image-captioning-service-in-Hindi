@@ -1,3 +1,7 @@
+import torchtext
+from torchtext.data import get_tokenizer   # for tokenization
+from collections import Counter     # for tokenizer
+
 class textVocab:
     # method to initialize the variables
     def __init__(self):

@@ -5,13 +5,10 @@ from urllib import request
 
 from .forms import ImageUploadForm
 
-from static.inference import get_prediction, load_models
+from static.inference import get_prediction
 
 # Create your views here.
 def index(request):
-
-	# no matter what load the models
-	load_models()
 
 	image_uri = None 
 	Predicted_caption = None

@@ -18,4 +18,7 @@ def main():
 
 
 if __name__ == '__main__':
+
+    from static.text_pre_processing import textVocab
+
     main()
