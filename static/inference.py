@@ -28,6 +28,9 @@ model = EncoderDecoder(
     dec_dim = 256
 )
 
+criterion = nn.CrossEntropyLoss(ignore_index=vocab.stoi["<PAD>"])
+optimizer = optim.Adam(model.parameters(), lr=3e-4)
+
 # load trained model
 PATH = 'static/Unclean5Sentences.pth'
 
@@ -39,22 +42,23 @@ model.load_state_dict(checkpoint['state_dict'])
 # function to predict the caption for the given image
 def get_prediction(image_bytes):
     
-    # transform the give image first
-    input_batch = transform_image(image_bytes)
+    model.eval()
+    with torch.no_grad():
+        # transform the give image first
+        img = transform_image(image_bytes)
+        
+        print("Encoding..........")
+        # extract features
+        print(img.shape)
+        features = model.encoder(img)
 
-    print("Encoding..........")
+        print("Predicting..........")
+        # get predictions
+        pred_caps, alphas = model.decoder.generate_caption(features, vocab=vocab)
+        pred_caps = pred_caps[1:len(pred_caps)-1]
 
-    # extract features
-    features = model.encoder(input_batch)
-
-    print("Predicting..........")
-    
-    # get predictions
-    pred_caps, alphas = model.decoder.generate_caption(features, vocab=vocab)
-    pred_caps = pred_caps[1:len(pred_caps)-1]
-
-    # make it printable
-    caption = ' '.join(pred_caps)
-    print("Predicted:", caption)
+        # make it printable
+        caption = ' '.join(pred_caps)
+        print("Predicted:", caption)
 
     return caption

@@ -40,7 +40,7 @@ def index(request):
 	context = {
 		'form': form,
 		'image_uri': image_uri,
-		'Predicted_caption': Predicted_caption,
+		'predicted_caption': Predicted_caption,
 	}
 
 	return render(request, 'index.html', context)

@@ -100,13 +100,14 @@ inception_Transform = T.Compose([
     T.Resize(299),
     T.CenterCrop(299),
     T.ToTensor(),
-    T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
+    T.Normalize(
+        mean=[0.485, 0.456, 0.406], 
+        std=[0.229, 0.224, 0.225])])
 
 def transform_image(image_bytes):
 
     # convert into standard pil image
-    img = Image.open(io.BytesIO(image_bytes))
+    img = Image.open(io.BytesIO(image_bytes)).convert('RGB')
 
     input_tensor = inception_Transform(img)
 
