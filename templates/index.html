@@ -17,6 +17,10 @@
             font-size: 15px;
         }
 
+        small {
+            font-weight: bold;
+        }
+
         .details {
             text-align: center;
             align-content: center;
@@ -53,8 +57,8 @@
 
     {% if image_uri is not None %}
     {% if predicted_caption is not None %}
-        <div class="alert alert-primary" role="alert">
-            Predicted label: <b>{{ predicted_caption }}</b>
+        <div class="alert" role="alert" style="background-color: #ffa1ee;">
+            Predicted Caption: <b>{{ predicted_caption }}</b>
         </div>
     {% else %}
         <div class="alert alert-danger" role="alert">
@@ -67,8 +71,10 @@
 {% endif %}
 
     <!-- Further information -->
+    <br>
+    <br>
     <p><small>Project:
-        <a href="https://github.com/28-08-2000/Image-captioning-service-in-Hindi" target="_blank">GitHub</a></small>
+        <a href="https://github.com/28-08-2000/Image-captioning-service-in-Hindi" target="_blank" style="text-decoration: None;">GitHub</a></small>
     </p>
 
 </div>
