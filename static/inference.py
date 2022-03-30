@@ -1,6 +1,6 @@
 import torch
 import torchvision
-from fastai.text.all import *
+# from fastai.text.all import *
 import torchtext
 import pickle
 
