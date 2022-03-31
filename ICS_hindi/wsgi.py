@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 # for the text vocab error
-from static.text_pre_processing import textVocab
+# from static.text_pre_processing import textVocab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ICS_hindi.settings')
 

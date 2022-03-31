@@ -15,9 +15,19 @@ from .image_processing import *
 # ------------------------------------------
 print("loading models.....")
 
-# load the vocab
-with open('static/vocab.pkl', 'rb') as file:
-    vocab = pickle.load(file)   
+with open('static/vocab_stoi.pkl', 'rb') as handle:
+    stoi = pickle.load(handle)
+with open('static/vocab_itos.pkl', 'rb') as handle:
+    itos = pickle.load(handle)
+
+# create text vocab object
+vocab = textVocab()
+vocab.stoi = stoi 
+vocab.itos = itos
+
+# load the vocab (Was showing error so i recreated a new)
+# with open('static/vocab.pkl', 'rb') as file:
+#     vocab = pickle.load(file)   
 
 # initialize model
 model = EncoderDecoder(
