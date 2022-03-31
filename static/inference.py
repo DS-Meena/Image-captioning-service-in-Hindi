@@ -34,7 +34,7 @@ optimizer = optim.Adam(model.parameters(), lr=3e-4)
 # load trained model
 PATH = 'static/Unclean5Sentences.pth'
 
-checkpoint = torch.load(PATH)
+checkpoint = torch.load(PATH, map_location ='cpu')
 model.load_state_dict(checkpoint['state_dict'])
 
 # ------------------------------------------
