@@ -19,7 +19,7 @@ def index(request):
 		form = ImageUploadForm(request.POST, request.FILES)
 
 		# check if form is valid
-		if form.is_valid():
+		if form.is_valid() and form.cleaned_data['image'] != None:
 			
 			# get the image
 			image = form.cleaned_data['image']
@@ -33,6 +33,10 @@ def index(request):
 				Predicted_caption = get_prediction(image_bytes)
 			except RuntimeError as re:
 				print(re)			
+
+			if form.cleaned_data['caption'] != None:
+
+				print(form.cleaned_data['caption'])
 
 	else:
 		form = ImageUploadForm()
