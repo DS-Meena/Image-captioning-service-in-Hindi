@@ -109,8 +109,8 @@ class Decoder(nn.Module):
         num_features = features.size(1)
         
         # create tensor of zeros for predictions and alpha
-        preds = torch.zeros(batch_sz, cap_len, self.vocab_sz).to(device)
-        alphas = torch.zeros(batch_sz, cap_len, num_features).to(device)
+        preds = torch.zeros(batch_sz, cap_len, self.vocab_sz)
+        alphas = torch.zeros(batch_sz, cap_len, num_features)
         
         for i in range(cap_len):
             # get alpha and attention weights

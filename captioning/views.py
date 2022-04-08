@@ -5,7 +5,7 @@ from urllib import request
 
 from .forms import ImageUploadForm
 
-from static.inference import get_prediction
+from static.inference import get_prediction, optimize_prediction
 
 # Create your views here.
 def index(request):
@@ -36,7 +36,11 @@ def index(request):
 
 			if form.cleaned_data['caption'] != None:
 
-				print(form.cleaned_data['caption'])
+				original_caption = form.cleaned_data['caption']
+				
+				# passing original caption to optimize the model
+				optimize_prediction(original_caption, image_bytes)
+
 
 	else:
 		form = ImageUploadForm()

@@ -72,3 +72,44 @@ def get_prediction(image_bytes):
         print("Predicted:", caption)
 
     return caption
+
+# function to optimize the caption for the given image
+def optimize_prediction(captions, image_bytes):
+
+    print("Optimizing......")
+
+    # optimizing the model
+    model.train()
+    # Image
+    
+    # transform the give image first
+    img = transform_image(image_bytes)
+
+    print(img.shape)
+
+    # original caption
+    # convert original caption into vector
+    captions = [vocab.stoi[word] for word in captions.split(' ')]
+    captions.insert(0, 1)
+    captions.append(2)
+    captions = torch.tensor(captions)
+    captions = captions.unsqueeze(0)
+
+    print(captions.shape)
+
+    pred_caps, attentions = model(img, captions)
+
+    # calculate batch loss
+    targets = captions[:, 1:]
+
+    print("Calculating loss......")
+    loss = criterion(pred_caps.view(-1, len(vocab)), targets.reshape(-1))
+    print(loss.item())
+
+    # # optimize the model
+    loss.backward()
+    optimizer.step()
+
+    print("Saving optimized mode.....")
+    # model.eval()
+    # save_model(model, 30, len(vocab))
