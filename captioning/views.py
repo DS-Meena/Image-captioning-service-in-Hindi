@@ -34,7 +34,7 @@ def index(request):
 			except RuntimeError as re:
 				print(re)			
 
-			if form.cleaned_data['caption'] != None:
+			if len(form.cleaned_data['caption']) > 0:
 
 				original_caption = form.cleaned_data['caption']
 				

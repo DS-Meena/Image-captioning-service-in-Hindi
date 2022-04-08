@@ -209,3 +209,16 @@ class EncoderDecoder(nn.Module):
         
         # return predicted caption, attention alphas
         return outputs
+
+# function to save model
+def save_model(model, num_epochs, vocab_sz):
+    model_state = {
+        'num_epochs' : num_epochs,
+        'embed_sz' : 300,
+        'vocab_sz' : vocab_sz,
+        'enc_dim' : 2048,
+        'dec_dim' : 256,
+        'state_dict' : model.state_dict()
+    }
+    
+    torch.save(model_state, 'Unclean5Sentences.pth')
