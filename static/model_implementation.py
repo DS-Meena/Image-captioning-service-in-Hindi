@@ -221,4 +221,4 @@ def save_model(model, num_epochs, vocab_sz):
         'state_dict' : model.state_dict()
     }
     
-    torch.save(model_state, 'Unclean5Sentences.pth')
+    torch.save(model_state, 'static/Unclean5Sentences.pth')
