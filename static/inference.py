@@ -111,4 +111,5 @@ def optimize_prediction(captions, image_bytes):
     optimizer.step()
 
     print("Saving optimized mode.....")
-    save_model(model, 21, len(vocab))
+    save_model(model, 13, len(vocab))
+    
