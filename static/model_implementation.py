@@ -109,8 +109,8 @@ class Decoder(nn.Module):
         num_features = features.size(1)
         
         # create tensor of zeros for predictions and alpha
-        preds = torch.zeros(batch_sz, cap_len, self.vocab_sz).to(device)
-        alphas = torch.zeros(batch_sz, cap_len, num_features).to(device)
+        preds = torch.zeros(batch_sz, cap_len, self.vocab_sz)
+        alphas = torch.zeros(batch_sz, cap_len, num_features)
         
         for i in range(cap_len):
             # get alpha and attention weights
@@ -209,3 +209,16 @@ class EncoderDecoder(nn.Module):
         
         # return predicted caption, attention alphas
         return outputs
+
+# function to save model
+def save_model(model, num_epochs, vocab_sz):
+    model_state = {
+        'num_epochs' : num_epochs,
+        'embed_sz' : 300,
+        'vocab_sz' : vocab_sz,
+        'enc_dim' : 2048,
+        'dec_dim' : 256,
+        'state_dict' : model.state_dict()
+    }
+    
+    torch.save(model_state, 'static/Unclean5Sentences.pth')
