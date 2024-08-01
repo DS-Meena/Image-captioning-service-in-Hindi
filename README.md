@@ -1,6 +1,7 @@
 # ICS_hindi
 
 Image captioning service in Hindi.
+![ics](https://github.com/user-attachments/assets/940529c1-a3b1-421a-8b56-bdeba1275719)
 
 check the webapp https://ics-hindi.herokuapp.com/. [Currently not working due to Git LFS quota exceeded issue]
 
